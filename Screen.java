@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Screen {
 
+    private final int MAP_SIZE = 64;
+    private final int MAP_SIZE_MASK = MAP_SIZE - 1;
     private int width, height;
     public int[] pixels, tiles;
 
@@ -12,10 +14,11 @@ public class Screen {
         this.width = width;
         this.height = height;
         pixels = new int[width*height];
-        tiles = new int[64 * 64];
+        tiles = new int[MAP_SIZE * MAP_SIZE];
         random = new Random();
 
-        for(int i = 0; i<64 * 64; i++) {
+        for(int i = 0; i<MAP_SIZE * MAP_SIZE; i++) {
+            // Randomizes any color from black to white
             tiles[i] = random.nextInt(0xFFFFFF);
         }
     }
@@ -31,7 +34,7 @@ public class Screen {
             for(int j = 0; j<width ; j++) {
                 int jj = j+jOffset;
                 // if(jj<0 || jj>=width) break;
-                int tileIndex = (((ii>>4)) & 63) + ((jj>>4) & 63)*64;
+                int tileIndex = (((ii>>4)) & MAP_SIZE_MASK) + ((jj>>4) & MAP_SIZE_MASK)*MAP_SIZE;
                 pixels[j + i * width] = tiles[tileIndex];
             }
         }

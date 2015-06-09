@@ -7,6 +7,11 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 import java.awt.image.*;
+import java.awt.geom.*;
+import javax.imageio.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 // @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
@@ -15,6 +20,7 @@ public class Game extends Canvas implements Runnable {
     // Constants
     public final static int scale = 3;
     private final double ns = (double)(1000000000 / 60);
+    private final int SPEED = 3;
     // Constants that are not final
     private static int height, width;
     private static boolean isRunning;
@@ -37,9 +43,10 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage image; //draw image first before putting to bufferstrategy
     private int[] pixels;
     private Screen screen;
+    private Keyboard key;
 
     public Game() {
-        width = 300;
+        width = 480;
         height = width / 16 * 9;
         isRunning = false;
         setPreferredSize(new Dimension(width*scale, height*scale));
@@ -48,6 +55,9 @@ public class Game extends Canvas implements Runnable {
         pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();//Raster of the image
 
         screen = new Screen(width, height);
+        key = new Keyboard();
+
+        addKeyListener(key);
 
         frame = new JFrame("Matthew's Game");
         frame.setResizable(false);
@@ -55,6 +65,7 @@ public class Game extends Canvas implements Runnable {
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
+        // setKeyBindings();
     }
 
     public void run() {
@@ -92,7 +103,27 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         // update
-        iOffset++;
+        key.update();
+        double modifier = 1;
+
+        // NOT WORKING. EVERYTHING IS IN INT!
+        if(key.up && key.left || key.up && key.right || key.down && key.left || key.down && key.right) {
+            modifier = 1/1.41414141;
+        }
+
+        if(key.up) {
+            iOffset-=SPEED * modifier;
+        }
+        if(key.down) {
+            iOffset+=SPEED * modifier;
+        }
+        if(key.left) {
+            jOffset-=SPEED * modifier;
+        }
+        if(key.right) {
+            jOffset+=SPEED * modifier;
+        }
+        // iOffset++;
         // jOffset++;
 
     }
@@ -138,6 +169,17 @@ public class Game extends Canvas implements Runnable {
             e.printStackTrace();
             System.out.println("Error at Game stop()");
         }
+    }
+
+    public void setKeyBindings() {
+        // this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("P"), "pause");
+		// this.getActionMap().put("pause", new AbstractAction(){
+		// 	@Override
+		// 	public void actionPerformed(ActionEvent e){
+		//
+		// 	}
+		// });
+
     }
 
     public static int getGameHeight() {
