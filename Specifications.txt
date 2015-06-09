@@ -1,0 +1,13 @@
+Game will be like gun bros. A character moves around the map with wasd
+
+character shoots in the direction of the cursor when the cursor button is pressed
+character has a follower
+follower tails character and shoots at nearest enemy
+follower + characters shall collectively be known as the 'heroes'
+
+Enemies follow character but can also attack the follower depending on which one is closer.
+THere are two kinds of enemies: one is a melee attacker and the other is a ranged attacker
+the ramged attackers shoot bullets that move in a slow motion, at least one every 3 seconds
+
+
+The melee attackers have to be close to the c
