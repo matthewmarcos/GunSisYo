@@ -14,7 +14,7 @@ public class Game extends Canvas implements Runnable {
 
     // Constants
     public final static int scale = 3;
-    private final double ns = (1000000000d / 60);
+    private final double ns = (double)(1000000000 / 60);
     // Constants that are not final
     private static int height, width;
     private static boolean isRunning;
@@ -22,6 +22,8 @@ public class Game extends Canvas implements Runnable {
 
     // Global Variables
     private double delta;
+    private long now;
+    private int time;
 
     // Threads
     private Thread gameThread;
@@ -34,7 +36,6 @@ public class Game extends Canvas implements Runnable {
     private int[] pixels;
     private Screen screen;
 
-    int time;
     public Game() {
         width = 300;
         height = width / 16 * 9;
@@ -56,16 +57,35 @@ public class Game extends Canvas implements Runnable {
 
     public void run() {
         initialize(); //initialize timers and globals
+        int updates = 0;
+        int frames = 0;
+        long timer = System.currentTimeMillis();
+
         while(isRunning) {
-            long now = System.nanoTime();
-            tick(); //update at 60 frames per second
+            now = System.nanoTime();
+            delta += (now - lastTime) / ns;
+            lastTime = now;
+            while(delta>=1) {
+                tick(); //update at 60 frames per second
+                delta--;
+                updates+=1;
+            }
             tock(); //render at unlimited speed!
+            frames++;
+            if(System.currentTimeMillis() - timer >= 1000) {
+                timer = System.currentTimeMillis();
+                // System.out.println("updates: " + updates + " FPS: " + frames);
+                frame.setTitle("Matthew's Game | FPS: " + frames + " | Updates: " + updates);
+                frames = 0;
+                updates = 0;
+            }
         }
     }
 
     public void initialize() {
         lastTime = System.nanoTime();
         delta = 0d;
+        time = 0;
     }
 
     private void tick() {
@@ -73,14 +93,13 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tock () {
-        time++;
         // render
         BufferStrategy bs = getBufferStrategy();
         if(bs == null) {
             createBufferStrategy(3);
             return;
         }
-        screen.clear();
+        // screen.clear();
         screen.render();
         for(int i=0; i<pixels.length; i++) {
             pixels[i] = screen.pixels[i]; //BAD FUCKING PRACTICE WTF ARE YOU DOING????
@@ -94,7 +113,6 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show(); // Memory clearing and Buffer swapping (blitting)
 
-        System.out.println(time);
     }
 
     public void setVisible(boolean x) {
