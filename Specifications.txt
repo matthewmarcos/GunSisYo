@@ -1,13 +1,33 @@
 Game will be like gun bros. A character moves around the map with wasd
 
+======Game Mechanics ===============
 character shoots in the direction of the cursor when the cursor button is pressed
 character has a follower
 follower tails character and shoots at nearest enemy
 follower + characters shall collectively be known as the 'heroes'
 
-Enemies follow character but can also attack the follower depending on which one is closer.
-THere are two kinds of enemies: one is a melee attacker and the other is a ranged attacker
+THere are two kinds of enemies based on attack: one is a melee attacker and the other is a ranged attacker
 the ramged attackers shoot bullets that move in a slow motion, at least one every 3 seconds
+The melee attackers have to be close to the heroes to attack
+There are two kinds of enemies categorized by movement type: There are flying enemies and walking enemies
+Walking enemies cannot pass through unpassable terrain
+flying enemies can pass through unpassable terrain. All flying enemies are melee attackers
 
 
-The melee attackers have to be close to the c
+Enemies follow character but can also attack the follower depending on which one is closer.
+the enemies deal 3-5 damage, and the hero has 150 health, regenerating 1 per second.
+THe enemies spawn in every 20 seconds in groups of 2-3
+
+The character has to survive 2 minutes to go to the next level.
+Every 10 levels, there will be a map change.
+
+
+======Technical Specifications=======
+
+Map data shall be piped from a text file
+There are initially two types of terrain: unpassable and passable
+Walking enemies will find the shortest path towards the character
+
+There will be no game layout manager. I will use absolute layouting
+Screen dimensions shall be 1024*768
+Runescape style UI.
