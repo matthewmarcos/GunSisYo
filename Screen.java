@@ -20,20 +20,19 @@ public class Screen {
         }
     }
 
-    public void render() {
+    public void render(int iOffset, int jOffset) {
         // counter++;
         // if(counter%50==0) {
         //     time++;
         // }
         for(int i = 0; i<height ; i++) {
-            // if(i<0 || i>=height) break;
+            int ii = i + iOffset;
+            // if(ii<0 || ii>=height) break;
             for(int j = 0; j<width ; j++) {
-                // if(j<0 || j>=width) break;
-                if(j + i * width <= pixels.length){
-                    int tileIndex = (i >> 4) + (j >> 4)*64;
-                    pixels[j + i * width] = tiles[tileIndex];
-                } else
-                    break;
+                int jj = j+jOffset;
+                // if(jj<0 || jj>=width) break;
+                int tileIndex = (((ii>>4)) & 63) + ((jj>>4) & 63)*64;
+                pixels[j + i * width] = tiles[tileIndex];
             }
         }
     }

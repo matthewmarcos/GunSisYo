@@ -24,6 +24,8 @@ public class Game extends Canvas implements Runnable {
     private double delta;
     private long now;
     private int time;
+    private int iOffset;
+    private int jOffset;
 
     // Threads
     private Thread gameThread;
@@ -90,6 +92,9 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         // update
+        iOffset++;
+        // jOffset++;
+
     }
 
     private void tock () {
@@ -100,7 +105,7 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         // screen.clear();
-        screen.render();
+        screen.render(iOffset, jOffset);
         for(int i=0; i<pixels.length; i++) {
             pixels[i] = screen.pixels[i]; //BAD FUCKING PRACTICE WTF ARE YOU DOING????
         }
