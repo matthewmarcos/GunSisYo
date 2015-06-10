@@ -12,7 +12,7 @@ import javax.sound.sampled.Clip;
 public class Keyboard implements KeyListener{
 
     private boolean[] keys;
-    public boolean up, down, left, right;
+    public boolean up, down, left, right, sprint;
 
     public Keyboard() {
         keys = new boolean[120];
@@ -23,6 +23,7 @@ public class Keyboard implements KeyListener{
         down = keys[KeyEvent.VK_DOWN] || keys [KeyEvent.VK_S];
         left = keys[KeyEvent.VK_LEFT] || keys [KeyEvent.VK_A];
         right = keys[KeyEvent.VK_RIGHT] || keys [KeyEvent.VK_D];
+        sprint = keys[KeyEvent.VK_SHIFT];
 
         // for(int i=0; i<keys.length ; i++) {
         //     if(keys[i]) {

@@ -46,7 +46,7 @@ public class Game extends Canvas implements Runnable {
     private Keyboard key;
 
     public Game() {
-        width = 480;
+        width = 300;
         height = width / 16 * 9;
         isRunning = false;
         setPreferredSize(new Dimension(width*scale, height*scale));
@@ -106,11 +106,12 @@ public class Game extends Canvas implements Runnable {
         key.update();
         double modifier = 1;
 
-        // NOT WORKING. EVERYTHING IS IN INT!
-        if(key.up && key.left || key.up && key.right || key.down && key.left || key.down && key.right) {
-            modifier = 1/1.41414141;
-        }
 
+        if(key.sprint) {
+            modifier = 2;
+        } else {
+            modifier = 1;
+        }
         if(key.up) {
             iOffset-=SPEED * modifier;
         }

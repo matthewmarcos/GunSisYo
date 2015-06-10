@@ -5,12 +5,14 @@ import java.io.*;
 
 public class Sprite {
 
-    private final int SIZE;
+    public final int SIZE;
     private int x, y;
-    private int[] pixels;
+    public int[] pixels;
     private Spritesheet sheet;
 
-    public Sprite(int size, Spritesheet sheet, int x, int y) {
+    public static Sprite grass = new Sprite(16, 0, 0, Spritesheet.tiles);
+
+    public Sprite(int size, int x, int y, Spritesheet sheet) {
         this.SIZE = size;
         this.pixels = new int[SIZE * SIZE];
         this.sheet = sheet;
@@ -21,9 +23,9 @@ public class Sprite {
     }
 
     private void load() {
-        for(int i=0; i<SIZE; i++) {
-            for(int j=0; i<SIZE; j++) {
-                pixels[i+j*SIZE] = sheet.pixels[(j + this.x) + (i + this.y) * sheet.getSize()];
+        for(int y = 0; y< SIZE; y++) {
+            for(int x=0; x<SIZE; x++) {
+                pixels[x + y * SIZE] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
             }
         }
     }
