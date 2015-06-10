@@ -36,7 +36,7 @@ public class Screen {
                 // if(jj<0 || jj>=width) break;
                 int tileIndex = (((ii>>4)) & MAP_SIZE_MASK) + ((jj>>4) & MAP_SIZE_MASK)*MAP_SIZE;
                 // pixels[j + i * width] = tiles[tileIndex];
-                pixels[j + i * width] = Sprite.grass.pixels[(j&15) + (i&15) * Sprite.grass.SIZE];
+                pixels[j + i * width] = Sprite.grass.pixels[(jj&15) + (ii&15) * Sprite.grass.SIZE];
             }
         }
     }
