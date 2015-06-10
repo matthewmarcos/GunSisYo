@@ -124,9 +124,6 @@ public class Game extends Canvas implements Runnable {
         if(key.right) {
             jOffset+=SPEED * modifier;
         }
-        // iOffset++;
-        // jOffset++;
-
     }
 
     private void tock () {
