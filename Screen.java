@@ -23,20 +23,14 @@ public class Screen {
         }
     }
 
-    public void render(int iOffset, int jOffset) {
-        // counter++;
-        // if(counter%50==0) {
-        //     time++;
-        // }
-        for(int i = 0; i<height ; i++) {
-            int ii = i + iOffset;
-            // if(ii<0 || ii>=height) break;
-            for(int j = 0; j<width ; j++) {
-                int jj = j+jOffset;
-                // if(jj<0 || jj>=width) break;
-                int tileIndex = (((ii>>4)) & MAP_SIZE_MASK) + ((jj>>4) & MAP_SIZE_MASK)*MAP_SIZE;
-                // pixels[j + i * width] = tiles[tileIndex];
-                pixels[j + i * width] = Sprite.grass.pixels[(jj&15) + (ii&15) * Sprite.grass.SIZE];
+    public void render(int yOffset, int xOffset) {
+        for(int y = 0; y < height; y++) {
+            int yp = y - yOffset;
+            if(yp < 0 || yp >= height) continue;
+            for(int x = 0; x < width ; x++) {
+                int xp = x - xOffset;
+                if(xp < 0 || xp >= width) continue;
+                pixels[xp + yp * width] = Sprite.grass.pixels[(x & 15) + (y & 15) * Sprite.grass.SIZE];
             }
         }
     }

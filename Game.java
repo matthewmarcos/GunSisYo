@@ -136,7 +136,7 @@ public class Game extends Canvas implements Runnable {
             createBufferStrategy(3);
             return;
         }
-        // screen.clear();
+        screen.clear();
         screen.render(iOffset, jOffset);
         for(int i=0; i<pixels.length; i++) {
             pixels[i] = screen.pixels[i]; //BAD FUCKING PRACTICE WTF ARE YOU DOING????
