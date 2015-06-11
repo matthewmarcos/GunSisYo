@@ -1,4 +1,5 @@
 import sprite.*;
+import level.*;
 
 import java.awt.*;
 import javax.swing.*;

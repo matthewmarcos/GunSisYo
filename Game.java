@@ -3,6 +3,7 @@
     Purpose: To kill time and learn good game development practices
 */
 import sprite.*;
+import level.*;
 
 import java.awt.*;
 import javax.swing.*;
@@ -22,7 +23,7 @@ public class Game extends Canvas implements Runnable {
     // Constants
     public final static int scale = 3;
     private final double ns = (double)(1000000000 / 60);
-    private final int SPEED = 3;
+    private final int SPEED = 1;
     // Constants that are not final
     private static int height, width;
     private static boolean isRunning;

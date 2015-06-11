@@ -1,5 +1,6 @@
 import java.util.*;
 import sprite.*;
+import level.*;
 
 public class Screen {
 

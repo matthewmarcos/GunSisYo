@@ -1,17 +1,86 @@
 Game will be like gun bros. A character moves around the map with wasd
 
 ======Game Mechanics ===============
-character shoots in the direction of the cursor when the cursor button is pressed
-character has a follower
+
+character shoots in the direction of the cursor when left clicking
+character has a follower, an archer
 follower tails character and shoots at nearest enemy
 follower + characters shall collectively be known as the 'heroes'
 
-THere are two kinds of enemies based on attack: one is a melee attacker and the other is a ranged attacker
+Character shoots arrows, but can attack surrounding enemies with his
+vayrian steel sword
+
+======================Enemies==============================================
+
+There are two kinds of enemies based on attack: one is a melee attacker and the other is a ranged attacker
 the ramged attackers shoot bullets that move in a slow motion, at least one every 3 seconds
 The melee attackers have to be close to the heroes to attack
 There are two kinds of enemies categorized by movement type: There are flying enemies and walking enemies
 Walking enemies cannot pass through unpassable terrain
-flying enemies can pass through unpassable terrain. All flying enemies are melee attackers
+flying enemies can pass through unpassable terrain. All flying enemies are melee attackers except the dragon wight
+
+Enemies consist of white walkers and their wights.
+
+White Walkers:
+    Ranged attackers, They are the enemies you have to clear per 10 levels.
+    Walking type enemies
+    Ranged attackers whose attacks have the following effects:
+
+        100% chance to slow you 50%
+        Inability to sprint
+        40% chance to FEAR you
+    Spawns wights every 25% of their health
+    All their weights die if they die.
+
+Wights:
+    Undead monsters
+    Fast like yeah. Around as fast as the player character
+    Main enemies
+    Really squishy
+    Can fly (Dragon wights and others like gryffin wights)
+Wight walkers:
+    Resurrected dead humans
+    Different from white walkers
+    Runs fast like yeah
+    melee attackers
+    little bit less squishy
+    Weakest damage dealt
+
+Wight archers
+    Resurrected dead humans
+    Little slower than wight walkers
+    most squishy wights
+    ranged attackers but slow projectiles
+    1 for every 3 walkers
+    Attacks hurt more than walker attacks
+Wight Bear
+    2x2 tiles taken
+    Really tanky
+    walk
+    strong attacks
+    slowest wight
+    Regenerates health
+    Just ignore this wight when being overwhelmed.
+Wight Dragon
+    Spawned by the night king. At higher levels, there's always at least one of this at any given time.
+    Icy burn attack (parang sa dry ice lang) slows your hero
+    really tanky, tankier than regular white walkers
+    Only fire breath is ranged. Else, attacks with melee
+    quite fast but by that time, you have really good upgrades to help you against this monster
+    melee attack is strong
+    3x3 monster
+
+Night king
+    Spawns white walkers and wights
+    Only white walker to spawn the wight dragon
+    THe only enemy in the last level
+    Faster than regular white walker, can sprint for a short time
+
+    But is a melee attacker. He just spawns a lot of guys
+    Really tanky
+
+    Can freeze you with or without getting projectiles to hit you
+
 
 
 Enemies follow character but can also attack the follower depending on which one is closer.
@@ -21,8 +90,13 @@ THe enemies spawn in every 20 seconds in groups of 2-3
 The character has to survive 2 minutes to go to the next level.
 Every 10 levels, there will be a map change.
 
+==================Tiles======================================================================
 
-======Technical Specifications=======
+The game is tile based. Some tiles represent grass, water, rocks, flowers, and other stuff. More on this later.
+Some tiles are collidable only by walking mobs, some are collidable by only flying, some are collidable by both.
+
+
+=======================Technical Specifications=========================================
 
 Map data shall be piped from a text file
 There are initially two types of terrain: unpassable and passable
