@@ -2,6 +2,8 @@
     Created by: Joseph Matthew R. Marcos
     Purpose: To kill time and learn good game development practices
 */
+import sprite.*;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;

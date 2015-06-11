@@ -1,3 +1,5 @@
+package sprites;
+
 import java.awt.image.*;
 import java.awt.geom.*;
 import javax.imageio.*;
